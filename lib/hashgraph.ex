@@ -44,7 +44,7 @@ defmodule Hashgraph do
   end
 
   def is_witness(event_id, hg) do
-    hg.events[event_id].is_witness    
+    hg.events[event_id].is_witness
   end
 
   def is_famous(event_id, hg) do
@@ -81,8 +81,8 @@ defmodule Hashgraph do
           |> Enum.filter(fn e -> sees?(y, x, hg) end)
           |> Enum.map(fn e -> hg.shareholders[e.creator].shares end)
           |> Enum.sum()
-      no_votes = total_shares - yes_votes
-      v = yes_notes >= no_votes
+      no_votes = hg.total_shares - yes_votes
+      v = yes_votes >= no_votes
       t = if v, do: yes_votes, else: no_votes
 
     end)
